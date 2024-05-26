@@ -7,6 +7,7 @@ const path=require("path");
 
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
+app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,"public")));
 
 
@@ -28,6 +29,12 @@ app.get("/",(req,res)=>{
 app.get("/listings",async(req,res)=>{
     const allistings=await listing.find({});
     res.render("./listing/index.ejs",{allistings});
+})
+
+app.get("/listings/:id/show",async(req,res)=>{
+    let {id}=req.params;
+    const listings=await listing.findById(id);
+    res.render("./listing/show.ejs",{listings});
 })
 
 // app.get("/listing",async (req,res)=>{
