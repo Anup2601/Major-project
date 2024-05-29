@@ -30,7 +30,9 @@ app.get("/listings",async(req,res)=>{
     const allistings=await listing.find({});
     res.render("./listing/index.ejs",{allistings});
 })
-
+app.get("/listings/new",async(req,res)=>{
+    res.redirect("/listing/show.ejs");
+})
 app.get("/listings/:id/show",async(req,res)=>{
     let {id}=req.params;
     const listings=await listing.findById(id);
