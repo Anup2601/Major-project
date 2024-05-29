@@ -6,13 +6,21 @@
     <title>New </title>
 </head>
 <body>
-    <h1>New listining</h1>
-    <form action="/listinings/new" method="post">
-        <input type="text" placeholder="Enter your title">
-        <input type="text" placeholder="Enter your Disceription">
-        <input type="text" placeholder="Enter your location">
-        <input type="text" placeholder="Enter your country">
-        <input type="text" placeholder="Enter your price">
+    <h1>Creat New listining</h1>
+    <form method="post" action="/listings" >
+        <input name="listing[title]" type="text" placeholder="Enter your title">
+        <br><br>
+        <input name="listing[description]" type="text" placeholder="Enter your Disceription">
+        <br><br>
+        <!-- <input name="listing[image]" type="text" placeholder="Enter your Image Link/URL"> -->
+        <br><br>
+        <input name="listing[price]" type="number" placeholder="Enter your price">
+        <br><br>
+        <input name="listing[location]" type="text" placeholder="Enter your location">
+        <br><br>
+        <input name="listing[country]" type="text" placeholder="Enter your country">
+        <br><br>
+        <button>Add</button>
     </form>
 </body>
 </html>

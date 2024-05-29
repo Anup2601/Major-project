@@ -4,6 +4,7 @@ const mongoose=require("mongoose");
 const listing=require("./models/listing.js");
 const { title } = require("process");
 const path=require("path");
+const { render } = require("ejs");
 
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
@@ -25,20 +26,27 @@ async function main(){
 app.get("/",(req,res)=>{
     res.send("working");
 });
-
+// main route 
 app.get("/listings",async(req,res)=>{
     const allistings=await listing.find({});
     res.render("./listing/index.ejs",{allistings});
 })
+// new route
 app.get("/listings/new",async(req,res)=>{
-    res.redirect("/listing/show.ejs");
+    res.render("./listing/new.ejs");
 })
+// show route 
 app.get("/listings/:id/show",async(req,res)=>{
     let {id}=req.params;
     const listings=await listing.findById(id);
     res.render("./listing/show.ejs",{listings});
 })
-
+// create route 
+app.post("/listings",async(req,res)=>{
+    const newlisting=new listing(req.body.listing);
+    await newlisting.save();
+    res.redirect("/listings")
+})
 // app.get("/listing",async (req,res)=>{
 //     let samplelisting=new listing({
 //         title:"house",
