@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>show</title>
-</head>
+<% layout("/layout/boilerplate") %>
 <body>
     <h1>All details</h1>
     <ul>
         <li><%= listings.title %></li>
         <li><%= listings.description %></li>
+        <li><%= listings.image %></li>
         <li>&#8377; <%= listings.price.toLocaleString("en-IN") %></li>
+        <!-- <li>&#8377; <%= listings.price.toLocaleString("en-IN") %></li> -->
         <li><%= listings.location %></li>
         <li><%= listings.country %></li>
     </ul>
+    <br>
+    <a href="/listings/<%=listings._id%>/edit">Edit This Listing</a>
+    <form action="/listings/<%= listings._id %>?_method=delete" method="post">
+    <button>Delete</button>
+</form>
 </body>
-</html>
+ 
